@@ -1,8 +1,17 @@
 # Advent of Code 2025
 
-I've been doing Advent of Code since the 2023 iteration and have done fairly well with respect to purely timing, but the quality of my solutions and clarity of my approach have been very inconsistent.
+I've been doing Advent of Code since the 2023 iteration and participated to compete on timings, but the quality of my solutions and clarity of my approach have been very inconsistent.
 
-This year, I will be focusing on writing up cleaner solutions and explanations of my approach + thoughts on my performance.
+This year, I will be focusing on writing up cleaner solutions and explanations of my approach + thoughts on my performance. My solves will probably be much slower than before, but the solutions are hopefully going to be much better.
+
+## Structure
+
+Note that this repo will *not* run out of the box because all input files are untracked ([see this FAQ](https://adventofcode.com/2025/about#faq_copying)). Adding valid `sample.txt` and `input.txt` files to the correct directories fixes this.
+
+For day `N`, my solution is `dayN.py` and uses the inputs stored in the `dayN` directory.
+By default, the included sample input is assumed to be at `dayN/sample.txt` and the puzzle input to be at `dayN/input.txt`.
+
+For example, `day1.py` assumes the day 1 files are at `day1/sample.txt` and `day1/input.txt`
 
 ## Daily Notes
 
