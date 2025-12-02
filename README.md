@@ -46,23 +46,17 @@ Another slow day, but this time partially on purpose. This was one of the puzzle
 An invalid ID has the form $X = SS$, where $S$ is an $n$-digit sequence with no leading zeros.
 Such an $X$ is divisible by $F_{n,2} = 10^n + 1$.
 
-Since $S$ is $n$ digits long, $10^{n-1} \le S \le 10^n - 1$
+Since $S$ is $n$ digits long, $10^{n-1} \leq S \leq 10^n - 1$
 
 For a range $\text{START} – \text{END}$, we want all $X$ such that
 $\text{START} \leq X \leq \text{END}$ and $F_{n,2} \mid X$.
 
 Writing $X = S \cdot F_{n,2}$ gives
-$
-\left\lceil \frac{START}{F_{n,2}} \right\rceil \le S \le 
-\left\lfloor \frac{END}{F_{n,2}} \right\rfloor.
-$
+$\left\lceil \frac{START}{F_{n,2}} \right\rceil \leq S \leq \left\lfloor \frac{END}{F_{n,2}} \right\rfloor$
 
 Combining with the digit constraint gives the tightest possible integer bounds:
 
-$
-S_{\min} = \max\!\left(10^{n-1},\; \Big\lceil \tfrac{START}{F_{n,2}} \Big\rceil \right),\quad
-S_{\max} = \min\!\left(10^{n}-1,\; \Big\lfloor \tfrac{END}{F_{n,2}} \Big\rfloor \right).
-$
+$S_{\min} = \max\!\left(10^{n-1},\; \Big\lceil \tfrac{START}{F_{n,2}} \Big\rceil \right),\quad S_{\max} = \min\!\left(10^{n}-1,\; \Big\lfloor \tfrac{END}{F_{n,2}} \Big\rfloor \right)$
 
 Every invalid IDs can be written as $X = S \cdot F_{n,2}$ for some $S \in S_{\min},\dots,S_{\max}$
 
@@ -72,7 +66,7 @@ Only $n$ such that $2n$ is between the digit counts of $\text{START}$ and $\text
 
 Following a similar approach to part 1, we can find the corresponding factor $F_{n,k} = \sum_{i=0}^{k-1} 10^{in}$ the number with $k$ ones spaced every $n$ digits (ex. $F_{3,3}=1001001$). We can simply substitute this $F$ into the work for part 1 to get most of the logic for part 2.
 
-This time, instead of iterating through only values of $n$, we iterate all pairs $(n,k)$ with $k \ge 2$ and
+This time, instead of iterating through only values of $n$, we iterate all pairs $(n,k)$ with $k \geq 2$ and
 $nk$ between the number of digits in $\text{START}$ and $\text{END}$.
 
 Because some IDs can be found when searching by multiple $(n,k)$ pairs, we need to be careful to only use unique invalid IDs when summing.
