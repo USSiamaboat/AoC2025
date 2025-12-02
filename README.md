@@ -43,25 +43,39 @@ Another slow day, but this time partially on purpose. This was one of the puzzle
 
 #### Part 1
 
-In my opinion, the interesting part of this problem is that the ranges can theoretically be arbitrarily large (though the actual ranges in my puzzle input ended up being not that large).
+An invalid ID has the form $X = SS$, where $S$ is an $n$-digit sequence with no leading zeros.
+Such an $X$ is divisible by $F_{n,2} = 10^n + 1$.
 
-The key insight I found is that an invalid ID $X = A_1 \cdots A_n A_1 \cdots A_n$ is divisible by $10^n + 1$ (alternatively, $11$ with $n-1$ zeroes inserted between the ones). Let $F_{2d, 2} = 10^d + 1$ be the corresponding "factor" for a candidate ID with $d$ digits. (ex. $F_{4, 2} = 101$). Notice that $10^{d - 1} \leq X / F_{d, 2} \leq 10^d - 1$ since $X / F_{n, 2} = A_1 \cdots A_n$.
+Since $S$ is $n$ digits long, $10^{n-1} \le S \le 10^n - 1$
 
-When considering the range $\text{START}-\text{END}$, we can rewrite the problem as finding the sum of all IDs $X$ such that $F_{d, 2} | X$ and $\text{START}/ F_{d, 2} \leq X / F_{d, 2} \leq \text{END} / F_{k, 2}$.
+For a range $\text{START} – \text{END}$, we want all $X$ such that
+$\text{START} \leq X \leq \text{END}$ and $F_{n,2} \mid X$.
 
-Notice the bounds can be tightened to $\max(10^{d-1}, \lceil \text{START}/ F_{d, 2} \rceil)$ and $\min(10^d - 1, \lfloor \text{END} / F_{d, 2} \rfloor)$ because $10^{d - 1} \leq X / F_{d, 2} \leq 10^d - 1$. We can see that these must be the tightest possible bounds, which are also inclusive on both ends.
+Writing $X = S \cdot F_{n,2}$ gives
+$
+\left\lceil \frac{START}{F_{n,2}} \right\rceil \le S \le 
+\left\lfloor \frac{END}{F_{n,2}} \right\rfloor.
+$
 
-We can also bound $2d$ between the number of digits of $\text{START}$ and $\text{END}$.
+Combining with the digit constraint gives the tightest possible integer bounds:
 
-Then, we can simply iterate through valid $d$ and generate the sets of invalid IDs by incrementing by $F_{d,2}$ within the bounds for each $d$. Finally, we sum these IDs.
+$
+S_{\min} = \max\!\left(10^{n-1},\; \Big\lceil \tfrac{START}{F_{n,2}} \Big\rceil \right),\quad
+S_{\max} = \min\!\left(10^{n}-1,\; \Big\lfloor \tfrac{END}{F_{n,2}} \Big\rfloor \right).
+$
+
+Every invalid IDs can be written as $X = S \cdot F_{n,2}$ for some $S \in S_{\min},\dots,S_{\max}$
+
+Only $n$ such that $2n$ is between the digit counts of $\text{START}$ and $\text{END}$ might work, so we can iterate only within these $n$ and sum the invalid IDs found.
 
 #### Part 2
 
-The solution for this part is very similar to the previous part. This time, we need to expand the definition $F_{d, k}$ to be the number with $k$ evenly spaced ones (including first and last digits) separated by $d / k - 1$ zeros between the ones. (ex. $F_{9, 3} = 1001001$). These new factors have the useful property that an ID $X$ with $d$ digits composed of a sequence repeating $k$ times is divisible by $F_{d, k}$ and $X / F_{d, k}$ is the repeating sequence, just like before. Notice that the previous definition of $F$ is a special case of this version, so this makes sense.
+Following a similar approach to part 1, we can find the corresponding factor $F_{n,k} = \sum_{i=0}^{k-1} 10^{in}$ the number with $k$ ones spaced every $n$ digits (ex. $F_{3,3}=1001001$). We can simply substitute this $F$ into the work for part 1 to get most of the logic for part 2.
 
-Most of the essential logic from part 1 still applies here, we just need to also iterate through valid $k$ (bounded by $2 \leq k \leq d$) in addition to $d$ when generating sets of invalid IDs and finding their sum.
+This time, instead of iterating through only values of $n$, we iterate all pairs $(n,k)$ with $k \ge 2$ and
+$nk$ between the number of digits in $\text{START}$ and $\text{END}$.
 
-One thing that we need to be careful with here in implementation is double-counting of the same invalid ID. For example, an 8-digit invalid ID with the same digit repeated 8 times will be caught by $k = 1, 2, 4, 8$. Therefore, we need to be careful to only sum such IDs exactly once.
+Because some IDs can be found when searching by multiple $(n,k)$ pairs, we need to be careful to only use unique invalid IDs when summing.
 
 </details>
 
