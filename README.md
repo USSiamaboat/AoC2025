@@ -56,7 +56,7 @@ $\left\lceil \frac{START}{F_{n,2}} \right\rceil \leq S \leq \left\lfloor \frac{E
 
 Combining with the digit constraint gives the tightest possible integer bounds:
 
-$S_{\min} = \max\!\left(10^{n-1},\; \Big\lceil \tfrac{START}{F_{n,2}} \Big\rceil \right),\quad S_{\max} = \min\!\left(10^{n}-1,\; \Big\lfloor \tfrac{END}{F_{n,2}} \Big\rfloor \right)$
+$S_{\min} = \max\left(10^{n-1}, \Big\lceil \tfrac{START}{F_{n,2}} \Big\rceil \right),\quad S_{\max} = \min\left(10^{n}-1, \Big\lfloor \tfrac{END}{F_{n,2}} \Big\rfloor \right)$
 
 Every invalid IDs can be written as $X = S \cdot F_{n,2}$ for some $S \in S_{\min},\dots,S_{\max}$
 
