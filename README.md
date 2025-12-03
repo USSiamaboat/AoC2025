@@ -90,7 +90,9 @@ My first intution was to extend the greedy algorithm from part 1, but I felt tha
 
 Let the optimal joltage for a bank $b=(b_1, \ldots, b_n)$ using exactly $k$ batteries be $J(b, k)$. The key recurrence relation is
 
-$J(b, k) = \begin{cases} 0 & k = 0 \\ 0 & |b| < k \\ \max(10^{k-1} b_1 + J((b_2, \ldots, b_n), k-1), \ J((b_2, \ldots, b_n), k)) & \text{else} \end{cases}$
+$J(b, k) = \max( \ 10^{k-1} b_1 + J((b_2, \ldots, b_n), k-1), \ \ J((b_2, \ldots, b_n), k) \ )$
+
+with base cases $J(b, k) = 0$ if $k = 0$ or $|b| < k$
 
 This is because the optimal solution either uses the first battery in the bank (and therefore must optimally choose another $k-1$ batteries) or it doesn't (and therefore must optimally choose all $k$ batteries from the remaining $n-1$ in the bank).
 
