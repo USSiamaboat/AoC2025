@@ -76,15 +76,25 @@ Because some IDs can be found when searching by multiple $(n,k)$ pairs, we need 
 <details>
 <summary><b>Day 3</b></summary>
 
-**Timing**: Unsolved
+**Timing**: `00:03:58`, `00:17:55`
+
+Finally started showing some signs of life in part 1, but an off-by-one error in my math for part 2 had me stuck for ~8 mins. Still an improvement from before, so that's nice to see.
 
 #### Part 1
 
-Unsolved
+The first thing I noticed was that the best pair $AB$ if we fix $B$ simply uses the largest $A$ that occurs before $B$. Therefore, we can simply iterate through each bank's batteries to compute the joltage if each battery is the second one and taking the max. This entire process can be done fairly compactly in one pass.
 
 #### Part 2
 
-Unsolved
+My first intution was to extend the greedy algorithm from part 1, but I felt that this would require more machinery than a simple DP solution, which I ended up implementing.
+
+Let the optimal joltage for a bank $b=(b_1, \ldots, b_n)$ using exactly $k$ batteries be $J(b, k)$. The key recurrence relation is
+
+$J(b, k) = \begin{cases} 0 & k = 0 \\ 0 & |b| < k \\ \max(10^{k-1} b_1 + J((b_2, \ldots, b_n), k-1), \ J((b_2, \ldots, b_n), k)) & \text{else} \end{cases}$
+
+This is because the optimal solution either uses the first battery in the bank (and therefore must optimally choose another $k-1$ batteries) or it doesn't (and therefore must optimally choose all $k$ batteries from the remaining $n-1$ in the bank).
+
+If we cache results, then a top-down implementation actually achieves $O(n \cdot k)$ time, which is pretty close to the greedy solution and is well within reasonable time complexities for AoC input sizes. I didn't bother actually implementing the greedy solution because the DP solution is super compact and therefore has much more aura.
 
 </details>
 
