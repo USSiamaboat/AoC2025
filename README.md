@@ -113,9 +113,9 @@ This part is fairly straightforward and mechanical: we can simply iterate throug
 
 #### Part 2
 
-There is the intuitive brute-force solution that modifies the part 1 solution to remove any accessible rolls and keeps running repeating this until the grid stops changing. Surprisingly, the puzzle input is small enough that this approach runs tolerably fast, but this is a very uninteresting solution.
+There is the intuitive brute-force solution that modifies the part 1 solution to remove any accessible rolls and keeps repeating this until the grid stops changing. Surprisingly, the puzzle input is small enough that this approach runs tolerably fast, but this is a very uninteresting solution.
 
-The solution I ended up using relies on the fact that removing a roll impacts the accessibility of only its neighbors. Therefore, we can precompute all the rolls that can be immediately removed, then reconsider only the neighbors of each removed roll.
+The solution I ended up using relies on the fact that removing a roll impacts the accessibility of only its neighbors. Therefore, we can find all the rolls that can be immediately removed, then reconsider only the neighbors of each removed roll.
 
 My implementation used an auxilliary grid tracking the number of neighboring rolls for each location and a stack for rolls that should be removed. Notice that, even though the problem description describes a breadth-first removal process, a depth-first process also works because any rolls that are already accessible don't become less accessible from removing some other roll. There wasn't a whole lot of thought behind stack vs queue because they're both correct and roughly equivalent speed for this problem, so I just chose the option I felt was easier to implement.
 
