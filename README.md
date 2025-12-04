@@ -103,15 +103,21 @@ If we cache results, then a top-down implementation actually achieves $O(n \cdot
 <details>
 <summary><b>Day 4</b></summary>
 
-**Timing**: Unsolved
+**Timing**: `00:04:48`, `00:09:28`
+
+Decently quick today minus a few minor slowdowns from forgetting that the forklift is only interested in moving rolls and not empty spaces. Hopefully this means I will be back on pace from previous years soon.
 
 #### Part 1
 
-Unsolved
+This part is fairly straightforward and mechanical: we can simply iterate through each position, view the neighbors, and count the number of accessible rolls. The most interesting approach would be to convolve a 3x3 kernel on the input with empty padding with width 1, but this feels like driving an F1 car to get groceries.
 
 #### Part 2
 
-Unsolved
+There is the intuitive brute-force solution that modifies the part 1 solution to remove any accessible rolls and keeps running repeating this until the grid stops changing. Surprisingly, the puzzle input is small enough that this approach runs tolerably fast, but this is a very uninteresting solution.
+
+The solution I ended up using relies on the fact that removing a roll impacts the accessibility of only its neighbors. Therefore, we can precompute all the rolls that can be immediately removed, then reconsider only the neighbors of each removed roll.
+
+My implementation used an auxilliary grid tracking the number of neighboring rolls for each location and a stack for rolls that should be removed. Notice that, even though the problem description describes a breadth-first removal process, a depth-first process also works because any rolls that are already accessible don't become less accessible from removing some other roll. There wasn't a whole lot of thought behind stack vs queue because they're both correct and roughly equivalent speed for this problem, so I just chose the option I felt was easier to implement.
 
 </details>
 
