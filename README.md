@@ -124,15 +124,27 @@ My implementation used an auxilliary grid tracking the number of neighboring rol
 <details>
 <summary><b>Day 5</b></summary>
 
-**Timing**: Unsolved
+**Timing**: `00:03:45`, `00:16:09`
+
+Part 1 was ok, but back to being insanely rusty for part 2. Got stuck on an edge case for ~10 mins, which was really frustrating. Somehow, still got the best part 1 solve time so far and the 2nd best part 2 solve time, which speaks to how rusty I am in general. Probably should do some more Codeforces and Leetcode.
 
 #### Part 1
 
-Unsolved
+This part was pretty straightforward for this input size. The naive solution (which I used) linearly searches the fresh ID ranges for each ingredient ID and counts the number of fresh IDs.
+
+This is not the most efficient solution. An alternative is to sort the ranges (by both start and end ID) and use a binary search for each fresh ID, which runs in $O((n+m)\log(n))$ for $n$ ranges and $m$ IDs. Another alternative is to sort both the ranges and the IDs and simultaneously iterating through them, which runs in $O(n\log(n) + m\log(n))$. However, I didn't opt to implement either of these because the inputs were small enough that the naive solution runs very quickly and I was already pretty tired and wanted to just finish quickly.
 
 #### Part 2
 
-Unsolved
+In my opinion, the most intuitive approach is to sort the ranges by the start ID and directly count. The key idea is that if we already counted some range $(a_i, \ldots, b_i)$, then the current range $(a_j, \ldots, b_j)$ must satisfy $a' \geq a$.
+
+Then, we can determine what subrange of $(a_j, \ldots, b_j)$ is currently uncounted. The easier case is $\forall i < j, a_j > b_i$ (start is after the end of all previous ranges), in which the entire range is uncounted.
+
+If we are not in this case, then $(a_j, \ldots, b_j)$ intersects at least one previous range. It is useful to attempt to convert this case to the previous case, which involves computing the smallest $a_j' > a_j$ such that $\forall i < j, a_j' > b_i$, which is $a_j' = \max_{i<j}(b_i) + 1$. Then, we can simply count the subrange $(a_j', b_j)$ as though it were the previous case.
+
+There is an edge case of the second case where $a_j' > b_j$, which is the case where a range is completely contained by at least one previous range. In this case, there are no uncounted IDs and the entire range should have no effect. In implementation, we can simply discard any invalid ranges to handle this correctly.
+
+The sorting guarantees that we will never "jump ahead" in any case and assume a range is safe to count when it intersects other ranges in a way that isn't already accounted for.
 
 </details>
 
