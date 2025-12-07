@@ -151,15 +151,26 @@ The sorting guarantees that we will never "jump ahead" in any case and assume a 
 <details>
 <summary><b>Day 6</b></summary>
 
-**Timing**: Unsolved
+**Timing**: `00:07:00`, `00:43:48`
+
+Pretty bad on part 1, exceptionally bad on part 2. Turns out I'm very slow at input parsing problems.
 
 #### Part 1
 
-Unsolved
+This part was a more straightforward input parsing problem. The easiest approach that I found was to remove all excess whitespace and read the result column by column.
 
 #### Part 2
 
-Unsolved
+There are probably a variety of good approaches here, but the most intuitive one that I found was to first transpose the input so numbers can be read from left to right, then read the result row by row. There isn't much else that's interesting, so I'll also show how each row is processed:
+
+```
+AAAA*   # Record operation *, AAA
+BBB     # Record BBB
+CC      # Record CC
+DD      # Record DD
+        # Compute AAAA*BBB*CC*DD, add to ans
+...
+```
 
 </details>
 
