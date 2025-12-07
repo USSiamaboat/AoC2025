@@ -177,15 +177,19 @@ DD      # Record DD
 <details>
 <summary><b>Day 7</b></summary>
 
-**Timing**: Unsolved
+**Timing**: `00:12:05`, `00:14:57`
+
+Could have been much faster in part 1 if I read through the problem more carefully. A bit better with a 2:52 part 2 split, though this should have been less than a minute since it's just substituting one data structure from part 1.
 
 #### Part 1
 
-Unsolved
+As usual, this part is mostly an implementation exercise (that I got cooked on). In my opinion, the most straighforward approach is to track where tachyon beams are in each row and compute where tachyon beams will be in the next row based on where they were in the previous row and where splitters are in the next row.
 
 #### Part 2
 
-Unsolved
+Solving this requires only a small modification to the approach from part 1. We still track where tachyon beams are in each row, but we also track how many ways there are to get a beam in that spot.
+
+Specifically, we can implement this with a map from beam locations to the number of ways to get a beam at that location. Then, we can compute the next row's map by summing the number of ways that beams can get to each location directly and from a splitter.
 
 </details>
 
