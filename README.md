@@ -15,6 +15,8 @@ For example, `day1.py` assumes the day 1 files are at `day1/sample.txt` and `day
 
 ## Daily Notes
 
+*Note:* I'm taking a break from writing up the full notes every day due to finals and other things. I'm still doing daily solves since they don't usually take too long.
+
 <details>
 <summary><b>Day 1</b></summary>
 
@@ -196,15 +198,17 @@ Specifically, we can implement this with a map from beam locations to the number
 <details>
 <summary><b>Day 8</b></summary>
 
-**Timing**: Unsolved
+**Timing**: `00:14:00`, `00:16:39`
+
+Another day, another slow solve. Tripped up *again* on some small details, which is probably an indicator that I need alot more practice to become fast again. At least I got the fastest part 2 split of the season so far of `2:39`.
 
 #### Part 1
 
-Unsolved
+Two words: union-find!!! Probably my 2nd favorite data structure of all time. (WIP)
 
 #### Part 2
 
-Unsolved
+(WIP)
 
 </details>
 
