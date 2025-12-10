@@ -215,30 +215,32 @@ Two words: union-find!!! Probably my 2nd favorite data structure of all time. (W
 <details>
 <summary><b>Day 9</b></summary>
 
-**Timing**: Unsolved
+**Timing**: `00:02:07`, `00:47:19`
 
 #### Part 1
 
-Unsolved
+Brute force :D (WIP)
 
 #### Part 2
 
-Unsolved
+(Literal) Edge cases >:( (WIP)
 
 </details>
 
 <details>
 <summary><b>Day 10</b></summary>
 
-**Timing**: Unsolved
+**Timing**: `00:12:53`, `00:28:35`
 
 #### Part 1
 
-Unsolved
+Brute force >:( (WIP)
 
 #### Part 2
 
-Unsolved
+I don't like these lin prog questions. Incentivised to use imported solvers over building algos >:(
+
+(WIP)
 
 </details>
 
